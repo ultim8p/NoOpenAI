@@ -1,5 +1,5 @@
 //
-//  ChatModel.swift
+//  OpenAIChatModel.swift
 //  
 //
 //  Created by Guerson Perez on 3/13/23.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum ChatModel: String, Codable {
+public enum OpenAIChatModel: String, Codable {
     
     case gpt35turbo = "gpt-3.5-turbo"
     

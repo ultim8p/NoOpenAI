@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum ChatObject: String, Codable {
+public enum OpenAIChatObject: String, Codable {
     
     case chatCompletion = "chat.completion"
 }

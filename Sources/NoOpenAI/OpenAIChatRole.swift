@@ -1,5 +1,5 @@
 //
-//  ChatRole.swift
+//  OpenAIChatRole.swift
 //  
 //
 //  Created by Guerson Perez on 3/13/23.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum ChatRole: String, Codable {
+public enum OpenAIChatRole: String, Codable {
     
     case user
     

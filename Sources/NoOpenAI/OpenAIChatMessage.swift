@@ -1,5 +1,5 @@
 //
-//  ChatMessage.swift
+//  OpenAIChatMessage.swift
 //  
 //
 //  Created by Guerson Perez on 3/13/23.
@@ -7,13 +7,13 @@
 
 import Foundation
 
-public struct ChatMessage: Codable {
+public struct OpenAIChatMessage: Codable {
     
-    public var role: ChatRole?
+    public var role: OpenAIChatRole?
     
     public var content: String?
     
-    public init(role: ChatRole? = nil, content: String? = nil) {
+    public init(role: OpenAIChatRole? = nil, content: String? = nil) {
         self.role = role
         self.content = content
     }

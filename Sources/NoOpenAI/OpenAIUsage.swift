@@ -1,5 +1,5 @@
 //
-//  ChatAPIUsage.swift
+//  OpenAIUsage.swift
 //  
 //
 //  Created by Guerson Perez on 3/13/23.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct ChatAPIUsage: Codable {
+public struct OpenAIUsage: Codable {
     
     var promptTokens: Int?
     

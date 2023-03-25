@@ -1,5 +1,5 @@
 //
-//  ChatRequest+Request.swift
+//  OpenAIChatRequest+Request.swift
 //  
 //
 //  Created by Guerson Perez on 3/13/23.
@@ -27,9 +27,9 @@ public extension Encodable {
 
 }
 
-public extension ChatRequest {
+public extension OpenAIChatRequest {
     
-    func postChatCompletion(_ client: Client, ai: NoOpenAI) async throws -> ChatResponse {
+    func postChatCompletion(_ client: Client, ai: NoOpenAI) async throws -> OpenAIChatResponse {
         
         let value = try await post(
             client,
@@ -37,7 +37,7 @@ public extension ChatRequest {
             headers: ai.headers,
             contentEncoder: ai.apiEncoder
         )
-        let validated = try value.validate(type: ChatAPIResponseError.self, using: ai.apiDecoder)
+        let validated = try value.validate(type: OpenAIResponseError.self, using: ai.apiDecoder)
         
         return try validated.value(using: ai.apiDecoder)
     }
