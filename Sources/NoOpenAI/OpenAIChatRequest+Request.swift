@@ -34,7 +34,7 @@ public extension OpenAIChatRequest {
         let value = try await post(
             client,
             uri: ai.uri(route: APIRouteChat.chatCompletion),
-            headers: ai.headers,
+            headers: HTTPHeaders(ai.headers),
             contentEncoder: ai.apiEncoder
         )
         let validated = try value.validate(type: OpenAIResponseError.self, using: ai.apiDecoder)
