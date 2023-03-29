@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct OpenAIChatMessage: Codable {
+public final class OpenAIChatMessage: Codable {
     
     public var role: OpenAIChatRole?
     

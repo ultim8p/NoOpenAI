@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct OpenAIChatChoice: Codable {
+public final class OpenAIChatChoice: Codable {
     
     public var message: OpenAIChatMessage?
     

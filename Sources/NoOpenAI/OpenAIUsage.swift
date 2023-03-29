@@ -7,11 +7,17 @@
 
 import Foundation
 
-public struct OpenAIUsage: Codable {
+public final class OpenAIUsage: Codable {
     
-    var promptTokens: Int?
+    public var promptTokens: Int?
     
-    var completionTokens: Int?
+    public var completionTokens: Int?
     
-    var totalTokens: Int
+    public var totalTokens: Int?
+    
+    init(promptTokens: Int? = nil, completionTokens: Int? = nil, totalTokens: Int? = nil) {
+        self.promptTokens = promptTokens
+        self.completionTokens = completionTokens
+        self.totalTokens = totalTokens
+    }
 }
