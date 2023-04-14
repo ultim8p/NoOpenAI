@@ -15,7 +15,7 @@ public final class OpenAIUsage: Codable {
     
     public var totalTokens: Int?
     
-    init(promptTokens: Int? = nil, completionTokens: Int? = nil, totalTokens: Int? = nil) {
+    public init(promptTokens: Int? = nil, completionTokens: Int? = nil, totalTokens: Int? = nil) {
         self.promptTokens = promptTokens
         self.completionTokens = completionTokens
         self.totalTokens = totalTokens
