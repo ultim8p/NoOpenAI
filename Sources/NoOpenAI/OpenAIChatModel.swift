@@ -13,7 +13,11 @@ public enum OpenAIChatModel: String, Codable {
     
     case gpt35turbo0301 = "gpt-3.5-turbo-0301"
     
+    case gpt35turbo0613 = "gpt-3.5-turbo-0613"
+    
     case gpt4 = "gpt-4"
+    
+    case gpt40613 = "gpt-4-0613"
     
     case gpt40314 = "gpt-4-0314"
     
