@@ -35,7 +35,8 @@ public extension OpenAIChatRequest {
             client,
             uri: ai.uri(route: APIRouteChat.chatCompletion),
             headers: HTTPHeaders(ai.headers),
-            contentEncoder: ai.apiEncoder
+            contentEncoder: ai.apiEncoder,
+            timeout: 60 * 10
         )
         let validated = try value.validate(type: OpenAIResponseError.self, using: ai.apiDecoder)
         
