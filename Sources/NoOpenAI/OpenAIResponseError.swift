@@ -8,7 +8,7 @@
 import Foundation
 import NoVaporAPI
 
-public struct OpenAIResponseError: NoVaporAPIError {
+public struct OpenAIResponseError: Error, Codable {
     
-    var error: OpenAIError?
+    public var error: OpenAIError?
 }

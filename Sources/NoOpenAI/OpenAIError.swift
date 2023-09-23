@@ -6,15 +6,14 @@
 //
 
 import Foundation
-import NoVaporAPI
 
-public struct OpenAIError: NoVaporAPIError {
+public struct OpenAIError: Codable {
     
-    var message: String?
+    public var message: String?
     
-    var code: String?
+    public var code: String?
     
-    var param: String?
+    public var param: String?
     
-    var type: String?
+    public var type: String?
 }
