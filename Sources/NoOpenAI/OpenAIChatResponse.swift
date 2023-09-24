@@ -16,7 +16,7 @@ public struct OpenAIChatResponse: Content {
     
     public var created: Date?
     
-    public var model: OpenAIChatModel?
+    public var model: String?
     
     public var usage: OpenAIUsage?
     

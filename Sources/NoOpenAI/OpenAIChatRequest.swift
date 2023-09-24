@@ -10,7 +10,7 @@ import Vapor
 
 public struct OpenAIChatRequest: Content {
     
-    var model: OpenAIChatModel?
+    var model: String?
     
     var n: Int?
     
@@ -18,7 +18,12 @@ public struct OpenAIChatRequest: Content {
     
     var user: String?
     
-    public init(model: OpenAIChatModel? = nil, n: Int? = nil, messages: [OpenAIChatMessage]? = nil, user: String? = nil) {
+    public init(
+        model: String? = nil,
+        n: Int? = nil,
+        messages: [OpenAIChatMessage]? = nil,
+        user: String? = nil
+    ) {
         self.model = model
         self.n = n
         self.messages = messages
