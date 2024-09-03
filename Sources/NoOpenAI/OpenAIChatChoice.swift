@@ -6,16 +6,17 @@
 //
 
 import Foundation
+import Vapor
 
-public final class OpenAIChatChoice: Codable {
+public final class OpenAIChatChoice<T: Codable>: Codable {
     
-    public var message: OpenAIChatMessage?
+    public var message: OpenAIChatMessage<T>?
     
     public var finishReason: OpenAIChatFinishReason?
     
     public var index: Int?
     
-    init(message: OpenAIChatMessage? = nil, finishReason: OpenAIChatFinishReason? = nil, index: Int? = nil) {
+    init(message: OpenAIChatMessage<T>? = nil, finishReason: OpenAIChatFinishReason? = nil, index: Int? = nil) {
         self.message = message
         self.finishReason = finishReason
         self.index = index

@@ -8,7 +8,7 @@
 import Foundation
 import Vapor
 
-public struct OpenAIChatResponse: Content {
+public struct OpenAIChatResponse<T: Content>: Content {
     
     public var id: String?
     
@@ -20,5 +20,5 @@ public struct OpenAIChatResponse: Content {
     
     public var usage: OpenAIUsage?
     
-    public var choices: [OpenAIChatChoice]?
+    public var choices: [OpenAIChatChoice<T>]?
 }

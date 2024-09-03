@@ -8,6 +8,7 @@
 import Foundation
 import Vapor
 import NoVaporAPI
+import NoLogger
 
 public extension Encodable {
 
@@ -29,15 +30,32 @@ public extension Encodable {
 
 public extension OpenAIChatRequest {
     
-    func postChatCompletion(_ client: Client, ai: NoOpenAI) async throws -> OpenAIChatResponse {
+    func postChatCompletion<T: Content>(_ client: Client, ai: NoOpenAI, logger: NoLogger? = nil) async throws -> OpenAIChatResponse<T> {
+        let value = try await post(
+            client,
+            uri: ai.uri(route: APIRouteChat.chatCompletion),
+            headers: HTTPHeaders(ai.headers),
+            contentEncoder: nil,
+            timeout: 60 * 10,
+            logger: logger
+        )
+
+        let validated = try value.validate(type: OpenAIResponseError.self, using: ai.apiDecoder)
+
+        return try validated.value(using: ai.apiDecoder)
+    }
+    
+    func postChatCompletionJSONResponse<T: Content>(_ client: Client, ai: NoOpenAI) async throws -> T {
         
         let value = try await post(
             client,
             uri: ai.uri(route: APIRouteChat.chatCompletion),
             headers: HTTPHeaders(ai.headers),
-            contentEncoder: ai.apiEncoder,
+            contentEncoder: nil,
             timeout: 60 * 10
         )
+        print("API JSON RESPONSE: \(value)")
+        
         let validated = try value.validate(type: OpenAIResponseError.self, using: ai.apiDecoder)
         
         return try validated.value(using: ai.apiDecoder)
