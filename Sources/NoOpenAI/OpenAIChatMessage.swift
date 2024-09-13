@@ -75,12 +75,15 @@ public struct OpenAIChatMessage<T: Codable>: Codable {
         role = try container.decodeIfPresent(String.self, forKey: .role)
         refusal = try container.decodeIfPresent(String.self, forKey: .refusal)
         
-        if let contentString = try container.decodeIfPresent(String.self, forKey: .content) {
-            // Decode the string representing JSON into the T type
-            if let data = contentString.data(using: .utf8) {
+        if T.self == String.self {
+            content = try container.decodeIfPresent(T.self, forKey: .content)
+        } else if let contentString = try container.decodeIfPresent(String.self, forKey: .content),
+                  let data = contentString.data(using: .utf8) {
+            do {
                 content = try JSONDecoder().decode(T.self, from: data)
-            } else {
-                content = nil
+            } catch {
+                print("OpenAIChatMessage failed to decode generic type")
+                throw(error)
             }
         } else {
             content = nil
@@ -92,10 +95,17 @@ public struct OpenAIChatMessage<T: Codable>: Codable {
         try container.encodeIfPresent(role, forKey: .role)
         try container.encodeIfPresent(refusal, forKey: .refusal)
         
-        if let content = content {
-            let data = try JSONEncoder().encode(content)
-            let contentString = String(data: data, encoding: .utf8)
-            try container.encodeIfPresent(contentString, forKey: .content)
+        if T.self == String.self {
+            try container.encodeIfPresent(content as? String, forKey: .content)
+        } else if let content = content {
+            do {
+                let data = try JSONEncoder().encode(content)
+                let contentString = String(data: data, encoding: .utf8)
+                try container.encodeIfPresent(contentString, forKey: .content)
+            } catch {
+                print("OpenAIChatMessage failed to encode generic type")
+                throw(error)
+            }
         }
     }
 }

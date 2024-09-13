@@ -31,6 +31,13 @@ public class NoOpenAI {
         ]
     }
     
+    var normalHeaders: [String: String] {
+        return [
+            "Authorization": "Bearer \(self.apiKey)",
+            "Content-Type": "application/json"
+        ]
+    }
+    
     public init(apiKey: String) {
         self.apiKey = apiKey
     }
@@ -51,6 +58,10 @@ enum APIRouteChat: APIRoute {
 }
 
 extension NoOpenAI {
+    
+    func url(route: APIRoute) -> URL {
+        return URL(string: "\(apiScheme)://\(apiHost)/\(route.description)")!
+    }
     
     func uri(route: APIRoute) -> URI {
         return URI(scheme: apiScheme, host: apiHost, path: route.description)

@@ -12,7 +12,7 @@ public struct OpenAIChatResponse<T: Content>: Content {
     
     public var id: String?
     
-    public var object: OpenAIChatObject?
+    public var object: String?
     
     public var created: Date?
     

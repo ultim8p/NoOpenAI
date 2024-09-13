@@ -10,11 +10,11 @@ import Vapor
 
 public final class OpenAIChatChoice<T: Codable>: Codable {
     
+    public var index: Int?
+    
     public var message: OpenAIChatMessage<T>?
     
     public var finishReason: OpenAIChatFinishReason?
-    
-    public var index: Int?
     
     init(message: OpenAIChatMessage<T>? = nil, finishReason: OpenAIChatFinishReason? = nil, index: Int? = nil) {
         self.message = message
@@ -22,3 +22,10 @@ public final class OpenAIChatChoice<T: Codable>: Codable {
         self.index = index
     }
 }
+
+//public final class OpenAIChatChiceMessageText: Content {
+//    
+//    public var role: String?
+//    
+//    public var content: String?
+//}

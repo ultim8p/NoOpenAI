@@ -9,6 +9,7 @@ import Foundation
 import Vapor
 import NoVaporAPI
 import NoLogger
+import NoAPI
 
 public extension Encodable {
 
@@ -31,33 +32,37 @@ public extension Encodable {
 public extension OpenAIChatRequest {
     
     func postChatCompletion<T: Content>(_ client: Client, ai: NoOpenAI, logger: NoLogger? = nil) async throws -> OpenAIChatResponse<T> {
+        
+        /*
+        let request = try self.request(
+            method: .post,
+            path: APIRouteChat.chatCompletion.description,
+            scheme: ai.apiScheme,
+            host: ai.apiHost,
+            port: nil,
+            headers: ai.normalHeaders,
+            encoder: ai.apiEncoder
+        )
+        
+        let response = try await request.response()
+        let validated = try response.validate(type: OpenAIResponseError.self, decoder: ai.apiDecoder)
+        
+        
+        return try validated.value(decoder: ai.apiDecoder)
+        */
+        
         let value = try await post(
             client,
             uri: ai.uri(route: APIRouteChat.chatCompletion),
             headers: HTTPHeaders(ai.headers),
-            contentEncoder: nil,
+            contentEncoder: ai.apiEncoder,
             timeout: 60 * 10,
             logger: logger
         )
-
-        let validated = try value.validate(type: OpenAIResponseError.self, using: ai.apiDecoder)
-
-        return try validated.value(using: ai.apiDecoder)
-    }
-    
-    func postChatCompletionJSONResponse<T: Content>(_ client: Client, ai: NoOpenAI) async throws -> T {
-        
-        let value = try await post(
-            client,
-            uri: ai.uri(route: APIRouteChat.chatCompletion),
-            headers: HTTPHeaders(ai.headers),
-            contentEncoder: nil,
-            timeout: 60 * 10
-        )
-        print("API JSON RESPONSE: \(value)")
         
         let validated = try value.validate(type: OpenAIResponseError.self, using: ai.apiDecoder)
         
         return try validated.value(using: ai.apiDecoder)
+         
     }
 }
