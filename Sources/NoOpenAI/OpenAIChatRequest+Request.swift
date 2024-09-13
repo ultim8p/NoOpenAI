@@ -9,7 +9,6 @@ import Foundation
 import Vapor
 import NoVaporAPI
 import NoLogger
-import NoAPI
 
 public extension Encodable {
 
