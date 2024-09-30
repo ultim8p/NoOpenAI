@@ -10,6 +10,7 @@ import Vapor
 
 /// Represents properties in JSON schema.
 public final class JSONSchemaProperties: Content {
+    
     let type: String
     let enumValues: [String]?
     var properties: [String: JSONSchemaProperties]?
@@ -102,6 +103,32 @@ public struct ResponseFormat: Content {
     }
 }
 
+// MARK: - Tools
+
+public struct OpenAIToolFunction: Codable {
+    
+    var name: String?
+    
+    var description: String?
+    
+    // For REQUESt. JSON object which describes the model how to call this tool.
+    var parameters: String?
+    
+    // For model RESPONSE. JSON object arguments which will be used to perform the tool task.
+    var arguments: String?
+}
+
+public struct OpenAITool: Codable {
+    
+    var id: String?
+    
+    var function: OpenAIToolFunction?
+    
+    // function
+    var type: String?
+}
+
+// MARK: - Request
 
 public struct OpenAIChatRequest: Content {
     
@@ -114,6 +141,8 @@ public struct OpenAIChatRequest: Content {
     var user: String?
     
     var response_format: ResponseFormat?
+    
+    var tools: [OpenAITool]?
     
     public init(
         model: String? = nil,

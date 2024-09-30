@@ -44,12 +44,25 @@ public final class OpenAIChatRequestMessage: Codable {
     
     public var content: [OpenAIChatMessageContent]?
     
-    public init(role: OpenAIChatRole? = nil, content: [OpenAIChatMessageContent]? = nil) {
+    public var tool_call_id: String?
+
+    public init(
+        role: OpenAIChatRole? = nil,
+        content: [OpenAIChatMessageContent]? = nil,
+        tool_call_id: String? = nil
+    ) {
         self.role = role
         self.content = content
+        self.tool_call_id = tool_call_id
     }
 }
 
+
+
+
+
+// MARK: - Chat Message
+// For RESPONSE
 public struct OpenAIChatMessage<T: Codable>: Codable {
     
     public var role: String?
@@ -58,22 +71,32 @@ public struct OpenAIChatMessage<T: Codable>: Codable {
     
     public var refusal: String?
     
-    public init(role: String? = nil, content: T? = nil, refusal: String? = nil) {
+    public var tool_calls: [OpenAITool]?
+    
+    public init(
+        role: String? = nil,
+        content: T? = nil,
+        refusal: String? = nil,
+        tool_calls: [OpenAITool]? = nil
+    ) {
         self.role = role
         self.content = content
         self.refusal = refusal
+        self.tool_calls = tool_calls
     }
     
     private enum CodingKeys: String, CodingKey {
         case role
         case content
         case refusal
+        case toolCalls
     }
     
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         role = try container.decodeIfPresent(String.self, forKey: .role)
         refusal = try container.decodeIfPresent(String.self, forKey: .refusal)
+        tool_calls = try container.decodeIfPresent([OpenAITool].self, forKey: .toolCalls)
         
         if T.self == String.self {
             content = try container.decodeIfPresent(T.self, forKey: .content)
@@ -94,6 +117,7 @@ public struct OpenAIChatMessage<T: Codable>: Codable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(role, forKey: .role)
         try container.encodeIfPresent(refusal, forKey: .refusal)
+        try container.encodeIfPresent(tool_calls, forKey: .toolCalls)
         
         if T.self == String.self {
             try container.encodeIfPresent(content as? String, forKey: .content)

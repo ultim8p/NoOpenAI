@@ -14,4 +14,8 @@ public enum OpenAIChatRole: String, Codable {
     case assistant
     
     case system
+    
+    case tool
+    
+    case toolCall
 }
