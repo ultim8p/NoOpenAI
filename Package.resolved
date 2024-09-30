@@ -1,5 +1,5 @@
 {
-  "originHash" : "dfd84f7e2055de7009dd5e23dbfc9b03aa3be53c12652878b522fc8840aef60f",
+  "originHash" : "87f2246cb33577e39d57c4a5062401ab90a074af88b54bb7e244c7647cc2a4d5",
   "pins" : [
     {
       "identity" : "async-http-client",
@@ -42,8 +42,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/ultim8p/NoLogger.git",
       "state" : {
-        "branch" : "main",
-        "revision" : "7029bfe2e270356d661173ece2da7ebd0459f17c"
+        "revision" : "7029bfe2e270356d661173ece2da7ebd0459f17c",
+        "version" : "0.0.1"
       }
     },
     {
@@ -51,8 +51,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/ultim8p/NoVaporAPI.git",
       "state" : {
-        "branch" : "main",
-        "revision" : "ee1235abcfa8cfcdcbd02cd2ab6da983906eec67"
+        "revision" : "e2923e0db84f914dd4de65e036398e8815cfd625",
+        "version" : "0.0.2"
       }
     },
     {
