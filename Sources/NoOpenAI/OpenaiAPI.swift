@@ -12,26 +12,26 @@ public class NoOpenAI {
     
     let apiHost = "api.openai.com"
     
-    var apiEncoder: JSONEncoder {
+    public var apiEncoder: JSONEncoder {
         let encoder = JSONEncoder()
-        encoder.keyEncodingStrategy = .convertToSnakeCase
+//        encoder.keyEncodingStrategy = .convertToSnakeCase
         return encoder
     }
     
-    var apiDecoder: JSONDecoder {
+    public var apiDecoder: JSONDecoder {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
     }
     
-    var headers: [(String, String)] {
+    public var headers: [(String, String)] {
         return [
             ("Authorization", "Bearer \(self.apiKey)"),
             ("Content-Type", "application/json")
         ]
     }
     
-    var normalHeaders: [String: String] {
+    public var normalHeaders: [String: String] {
         return [
             "Authorization": "Bearer \(self.apiKey)",
             "Content-Type": "application/json"

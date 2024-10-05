@@ -33,7 +33,7 @@ public final class JSONSchemaProperties: Content {
             
             // Convert properties based on the key
             try container.encode(type, forKey: .customKey("type"))
-            try container.encodeIfPresent(enumValues, forKey: .customKey("enumValues"))
+            try container.encodeIfPresent(enumValues, forKey: .customKey("enum"))
             try container.encodeIfPresent(properties, forKey: .customKey("properties"))
             try container.encodeIfPresent(items, forKey: .customKey("items"))
             try container.encodeIfPresent(required, forKey: .customKey("required"))
@@ -116,6 +116,13 @@ public struct OpenAIToolFunction: Codable {
     
     // For model RESPONSE. JSON object arguments which will be used to perform the tool task.
     var arguments: String?
+    
+    public init(name: String? = nil, description: String? = nil, parameters: String? = nil, arguments: String? = nil) {
+        self.name = name
+        self.description = description
+        self.parameters = parameters
+        self.arguments = arguments
+    }
 }
 
 public struct OpenAITool: Codable {
@@ -126,6 +133,12 @@ public struct OpenAITool: Codable {
     
     // function
     var type: String?
+    
+    public init(id: String? = nil, function: OpenAIToolFunction? = nil, type: String? = nil) {
+        self.id = id
+        self.function = function
+        self.type = type
+    }
 }
 
 // MARK: - Request
@@ -155,7 +168,8 @@ public struct OpenAIChatRequest: Content {
         top_p: Double?,
         messages: [OpenAIChatRequestMessage]? = nil,
         user: String? = nil,
-        responseFormat: ResponseFormat? = nil
+        responseFormat: ResponseFormat? = nil,
+        tools: [OpenAITool]? = nil
     ) {
         self.model = model
         self.n = n
@@ -164,5 +178,6 @@ public struct OpenAIChatRequest: Content {
         self.messages = messages
         self.user = user
         self.response_format = responseFormat
+        self.tools = tools
     }
 }
