@@ -5,6 +5,7 @@
 //  Created by Guerson Perez on 3/13/23.
 //
 
+import Vapor
 import Foundation
 
 public final class OpenAIChatMessageContent: Codable {
@@ -44,15 +45,19 @@ public final class OpenAIChatRequestMessage: Codable {
     
     public var content: [OpenAIChatMessageContent]?
     
+    public var tool_calls: [OpenAITool]?
+    
     public var tool_call_id: String?
-
+    
     public init(
         role: OpenAIChatRole? = nil,
         content: [OpenAIChatMessageContent]? = nil,
+        tool_calls: [OpenAITool]? = nil,
         tool_call_id: String? = nil
     ) {
         self.role = role
         self.content = content
+        self.tool_calls = tool_calls
         self.tool_call_id = tool_call_id
     }
 }

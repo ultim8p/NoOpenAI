@@ -16,7 +16,10 @@ public final class OpenAIChatChoice<T: Codable>: Codable {
     
     public var finishReason: OpenAIChatFinishReason?
     
-    init(message: OpenAIChatMessage<T>? = nil, finishReason: OpenAIChatFinishReason? = nil, index: Int? = nil) {
+    init(
+        message: OpenAIChatMessage<T>? = nil,
+        finishReason: OpenAIChatFinishReason? = nil,
+        index: Int? = nil) {
         self.message = message
         self.finishReason = finishReason
         self.index = index

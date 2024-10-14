@@ -16,7 +16,7 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/vapor/vapor.git", from: "4.0.0"),
-        .package(url: "https://github.com/ultim8p/NoVaporAPI.git", from: "0.0.2"),
+        .package(url: "https://github.com/ultim8p/NoVaporAPI.git", from: "0.0.3"),
         .package(url: "https://github.com/ultim8p/NoLogger.git", from: "0.0.1"),
     ],
     targets: [
