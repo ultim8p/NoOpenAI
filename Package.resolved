@@ -1,5 +1,5 @@
 {
-  "originHash" : "87f2246cb33577e39d57c4a5062401ab90a074af88b54bb7e244c7647cc2a4d5",
+  "originHash" : "a84f063da6fa319abec77ced2ee6f2788cd9f843d39016259d8c9589ac477d5a",
   "pins" : [
     {
       "identity" : "async-http-client",
@@ -51,8 +51,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/ultim8p/NoVaporAPI.git",
       "state" : {
-        "revision" : "e2923e0db84f914dd4de65e036398e8815cfd625",
-        "version" : "0.0.2"
+        "revision" : "44954d27402db170f796d927bfd750205f2f2109",
+        "version" : "0.0.3"
       }
     },
     {

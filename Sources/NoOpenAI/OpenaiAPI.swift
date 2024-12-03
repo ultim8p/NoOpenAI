@@ -4,8 +4,6 @@ import Vapor
 
 public class NoOpenAI {
     
-    var apiKey: String
-    
     // MARK: API URL
     
     let apiScheme = "https"
@@ -14,7 +12,6 @@ public class NoOpenAI {
     
     public var apiEncoder: JSONEncoder {
         let encoder = JSONEncoder()
-//        encoder.keyEncodingStrategy = .convertToSnakeCase
         return encoder
     }
     
@@ -24,23 +21,14 @@ public class NoOpenAI {
         return decoder
     }
     
-    public var headers: [(String, String)] {
-        return [
-            ("Authorization", "Bearer \(self.apiKey)"),
+    public func headers(apiKey: String) -> HTTPHeaders {
+        HTTPHeaders([
+            ("Authorization", "Bearer \(apiKey)"),
             ("Content-Type", "application/json")
-        ]
+        ])
     }
     
-    public var normalHeaders: [String: String] {
-        return [
-            "Authorization": "Bearer \(self.apiKey)",
-            "Content-Type": "application/json"
-        ]
-    }
-    
-    public init(apiKey: String) {
-        self.apiKey = apiKey
-    }
+    public init() { }
 }
 
 protocol APIRoute: CustomStringConvertible { }

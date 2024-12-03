@@ -30,7 +30,12 @@ public extension Encodable {
 
 public extension OpenAIChatRequest {
     
-    func postChatCompletion<T: Content>(_ client: Client, ai: NoOpenAI, logger: NoLogger? = nil) async throws -> OpenAIChatResponse<T> {
+    func postChatCompletion<T: Content>(
+        _ client: Client,
+        apiKey: String,
+        ai: NoOpenAI,
+        logger: NoLogger? = nil
+    ) async throws -> OpenAIChatResponse<T> {
         
         /*
         let request = try self.request(
@@ -53,7 +58,7 @@ public extension OpenAIChatRequest {
         let value = try await post(
             client,
             uri: ai.uri(route: APIRouteChat.chatCompletion),
-            headers: HTTPHeaders(ai.headers),
+            headers: ai.headers(apiKey: apiKey),
             contentEncoder: ai.apiEncoder,
             timeout: 60 * 10,
             logger: logger
