@@ -76,8 +76,8 @@ public struct OpenAIChatRequest: Content {
     public init(
         model: String? = nil,
         n: Int? = nil,
-        temperature: Double?,
-        top_p: Double?,
+        temperature: Double? = nil,
+        top_p: Double? = nil,
         messages: [OpenAIChatRequestMessage]? = nil,
         user: String? = nil,
         responseFormat: ResponseFormat? = nil,
